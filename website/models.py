@@ -1,6 +1,6 @@
 '''Arquivo para as classes do banco de dados'''
 
-from app import db
+from . import db
 from flask_login import UserMixin
 
 class Usuario(db.Model, UserMixin):

@@ -1,9 +1,9 @@
 '''Código para as páginas referentes ao login e cadastro de usuários'''
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from models import Usuario
+from .models import Usuario
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
+from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)

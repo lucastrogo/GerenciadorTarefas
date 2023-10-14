@@ -8,3 +8,21 @@ class Usuario(db.Model, UserMixin):
     usuario = db.Column(db.String(150), unique=True)
     senha = db.Column(db.String(150))
     nome = db.Column(db.String(150))
+    materias = db.relationship('Materia')
+    
+class Materia(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+    nome = db.Column(db.String(150))
+    materias = db.relationship('Topico')
+    
+class Topico(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_materia = db.Column(db.Integer, db.ForeignKey('materia.id'))
+    nome = db.Column(db.String(150))
+    completo = db.Column(db.Boolean, default=False)
+    
+class Anotacao(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_materia = db.Column(db.Integer, db.ForeignKey('materia.id'))
+    texto = db.Column(db.Text, nullable=False)

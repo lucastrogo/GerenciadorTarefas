@@ -1,68 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"
-    <title>Gerenciador de Tarefas</title>   
-    <style type="text/css">
-        *{
-            margin:0;
-            border:0;
-            padding:0;  
-        }  
-        
-        header{
-            background-color: black;
-            padding: 10px;
-            font-family: 'arial';
-            color: whitesmoke;
-            font-size: larger;
-            }
-        body{
-            background-color:#212F3D;
-            color:whitesmoke;
-        }
-       
-        form{
-            font-size: 50px;
-            width: 80%;
-            margin: 0 auto;
-            box: 2px 2px;
-            color: darkkhaki;
-            box-sizing: border-box;
-    
-
-        }
-        input{
-            font-size:30px;
-            width: 80%;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color:#616468;
-            color:darkkhaki;
-
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='cadastro.css') }}">
+    <title>Gerenciador de Tarefas</title>
 </head>
 <body>
     <header>
-        <h1> Cadastro</h1>
-        <h2> Já possui um  cadastro? Faça login em <a href="login.html">login</a></h2>
+        <h1> Gerenciador de Tarefas</h1>
     </header>
-    <form action="/" method="post">
-        <br>
-        <input type="text" name="usuario" placeholder="digite seu usuário">
-        <br>
-        <br>
-        <input type="text" name="nome" placeholder="digite seu nome">
-        <br>
-        <br>
-        <input type="password" name="senha1" placeholder="digite sua senha">
-        <br>
-        <br>
-        <input type="password" name="senha2" placeholder="confirme sua senha">
-        <br>
-        <br>
-        <input type="submit" name="enviar" placeholder="enviar"
-    </form>
+    <section class="arealogin">
+        <div class="login">
+            <h2>Cadastro</h2>
+            <form action="/" method="post">
+                <br>
+                <input type="text" name="usuario" placeholder="Digite seu usuário">
+                <br>
+                <input type="text" name="nome" placeholder="Digite seu nome">
+                <br>
+                <input type="password" name="senha1" placeholder="Digite sua senha">
+                <input type="password" name="senha2" placeholder="Confirme sua senha">
+                <br>
+                <br>
+                <button type="submit" value="login">Cadastrar</button>
+                <p> Já possui um cadastro? <a href="/">Entre aqui</a></p>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
+

@@ -1,58 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"
-    <title>Gerenciador de Tarefas</title>   
-    <style type="text/css">
-        *{
-            margin:0;
-            border:0;
-            padding:0;  
-        }  
-        
-        header{
-            background-color: black;
-            padding: 10px;
-            font-family: 'arial';
-            color: whitesmoke;
-            }
-        body{
-            background-color:#212F3D;
-            color:whitesmoke;
-           
-        }
-        form{
-            font-size: 50px;
-            width: 80%;
-            margin: 0 auto;
-            box: 2px 2px;
-    
-
-        }
-        input{
-            font-size:30px;
-            width: 80%;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color:#616468;
-            color:darkkhaki;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='login.css') }}">
+    <title>Gerenciador de Tarefas</title>
 </head>
+
 <body>
     <header>
-        <h1> Login</h1>
-        <h2> Não possui um  cadastro? Cadastre-se em <a href="cadastro.html">Cadastro</a></h2>
+        <h1> Gerenciador de Tarefas</h1>
     </header>
-    <form action="/" method="post">
-        <br>
-        <input type="text" name="usuario" placeholder="digite seu usuário">
-        <br>
-        <br>
-        <input type="password" name="senha" placeholder="digite sua senha">
-        <br>
-        <br>
-        <input type="submit" name="enviar" placeholder="enviar"
-    </form>
+    <section class="arealogin">
+        <div class="login">
+            <h2>Login</h2>
+            <form action="/" method="post">
+                <br>
+                <input type="text" name="usuario" placeholder="Usuário">
+                <input type="password" name="senha" placeholder="Senha">
+                <br>
+                <br>
+                <button type="submit" value="login">Entrar</button>
+                <p> Não possui um cadastro? <a href="cadastro">Cadastre-se aqui</a></p>
+            </form>
+        </div>
+    </section>
 </body>
 </html>

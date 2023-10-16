@@ -8,10 +8,10 @@ from flask_login import login_required, current_user
 views = Blueprint('views', __name__)
 
 @login_required
-@views.route('/')
-def index():
+@views.route('/logado')
+def logado():
     materias = Materia.query.filter(id_usuario=current_user.id).all()
-    return render_template('index.html', materias=materias)
+    return render_template('logado.html', materias=materias)
 
 @login_required
 @views.route('/adicionar_materia', methods=['POST'])
@@ -21,13 +21,13 @@ def adicionar_materia():
     db.session.add(materia)
     db.session.commit()
     flash('Matéria adicionada com sucesso!', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('logado'))
 
 @login_required
 @views.route('/materia/<int:id_materia>')
 def materia(id_materia):
     materia = Materia.query.get(id_materia)
-    return render_template('subject.html', materia=materia)
+    return render_template('materia.html', materia=materia)
 
 @login_required
 @views.route('/adicionar_topico/<int:id_materia>', methods=['POST'])

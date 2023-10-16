@@ -10,7 +10,7 @@ views = Blueprint('views', __name__)
 @login_required
 @views.route('/logado')
 def logado():
-    materias = Materia.query.filter(id_usuario=current_user.id).all()
+    materias = Materia.query.filter(Materia.id_usuario==current_user.id).all()
     return render_template('logado.html', materias=materias)
 
 @login_required

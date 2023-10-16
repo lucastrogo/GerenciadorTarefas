@@ -110,4 +110,4 @@ def excluir_materia(id_materia):
         flash('Matéria não encontrada', 'danger')
     
     # Redirecione de volta para a página de detalhes da matéria
-    return redirect(url_for('views.logaedo'))
+    return redirect(url_for('views.logado'))

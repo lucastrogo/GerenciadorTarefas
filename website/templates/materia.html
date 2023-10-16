@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes da Matéria</title>
+    <style>
+        .topic-button {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ materia.nome }}</h1>
+    
+    <h2>Tópicos:</h2>
+    <ul>
+        {% for topico in materia.topicos %}
+            <li class="topic-button">
+                <form method="GET" action="{{ url_for('views.topico', id_topico=topico.id) }}">
+                    <input type="hidden" name="topico_id" value="{{ topico.id }}">
+                    <button type="submit" class="btn btn-info">{{ topico.nome }}</button>
+                </form>
+                <form method="POST" action="{{ url_for('views.excluir_topico', id_topico=topico.id) }}">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Tópico:</h2>
+    <form method="POST" action="{{ url_for('views.adicionar_topico', id_materia=materia.id) }}">
+        <input type="text" name="nome" placeholder="Nome do tópico">
+        <input type="submit" value="Adicionar">
+    </form>
+</body>
+</html>

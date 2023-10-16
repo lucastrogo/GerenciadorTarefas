@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Logada</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ current_user.nome }}!</h1>
+    
+    <h2>Suas Matérias:</h2>
+    <ul>
+        {% for materia in materias %}
+            <li class="materias-button">
+                <form method="GET" action="{{ url_for('views.materia', id_materia=materia.id) }}">
+                    <input type="hidden" name="materia_id" value="{{ materia.id }}">
+                    <button type="submit" class="btn btn-info">{{ materia.nome }}</button>
+                </form>
+                <form method="POST" action="{{ url_for('views.excluir_materia', id_materia=materia.id) }}">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Matéria:</h2>
+    <form method="POST" action="{{ url_for('views.adicionar_materia') }}">
+        <input type="text" name="nome" placeholder="Nome da matéria">
+        <input type="submit" value="Adicionar">
+    </form>
+</body>
+</html>

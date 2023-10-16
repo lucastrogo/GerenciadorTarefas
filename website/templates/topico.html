@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Tópico</title>
+    <style>
+        .topic-button {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ topico.nome }}</h1>
+    
+    <h2>Anotações:</h2>
+    <ul>
+        {% for anotacao in topico.anotacoes %}
+            <li class="anotacoes">
+                <form method="GET" action="{{ url_for('views.topico', id_topico=topico.id) }}">
+                    <li><a>{{ anotacao.texto }}</a></li>
+                </form>
+                <form method="POST" action="{{ url_for('views.excluir_anotacao', id_anotacao=anotacao.id) }}">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Anotação:</h2>
+    <form method="POST" action="{{ url_for('views.adicionar_anotacao', id_topico=topico.id) }}">
+        <textarea name="texto" placeholder="Escreva sua anotação aqui"></textarea>
+        <input type="submit" value="Adicionar">
+    </form>
+</body>
+</html>

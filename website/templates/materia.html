@@ -35,7 +35,11 @@
             <li class="topic-button">
                 <form method="GET" action="{{ url_for('views.topico', id_topico=topico.id) }}">
                     <input type="hidden" name="topico_id" value="{{ topico.id }}">
+                    {% if topico.completo %}
+                        <button type="submit" class="btntopico"><del>{{ topico.nome }}</del></button>
+                    {% else %}
                     <button type="submit" class="btntopico">{{ topico.nome }}</button>
+                    {% endif %}
                 </form>
                 <form method="POST" action="{{ url_for('views.excluir_topico', id_topico=topico.id) }}">
                     <button type="submit" class="btnexcluir">X</button>

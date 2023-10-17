@@ -53,14 +53,19 @@ def adicionar_topico(id_materia):
 
     flash('Tópico e prazo adicionados com sucesso!', 'success')
     return redirect(url_for('views.materia', id_materia=id_materia))
+
 @login_required
-@views.route('/marcar_completo/<int:id_topico>', methods=['POST'])
-def marcar_completo(id_topico):
+@views.route('/marcar_completo/<int:id_topico>/<int:finalizado>', methods=['POST','GET'])
+def marcar_completo(id_topico, finalizado):
     topico = Topico.query.get(id_topico)
-    topico.completo = True
+    if finalizado == 1:
+        topico.completo = True
+        flash('Tópico marcado como concluído!', 'success')
+    else:
+        topico.completo = False
+        flash('Tópico marcado como não concluído!', 'danger')
     db.session.commit()
-    flash('Tópico marcado como concluído!', 'success')
-    return redirect(url_for('views.materia', id_materia=topico.id_materia))
+    return redirect(url_for('views.topico', id_topico=topico.id))
 
 @login_required
 @views.route('/adicionar_anotacao/<int:id_topico>', methods=['POST'])

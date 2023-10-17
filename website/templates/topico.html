@@ -40,7 +40,11 @@
         <p>Tópico concluído!</p>
     {% else %}
         {% if topico.prazo %}
-            <p>Faltam {{ diferenca }} dias para o prazo do tópico.</p>
+            {% if diferenca >= 0 %}
+                <p>Faltam {{ diferenca }} dias para o prazo do tópico.</p>
+            {% else %}
+                <p>O tópico está {{ -1*diferenca }} dias atrasado.</p>
+            {% endif %}
         {% else %}
             <p>O prazo não foi definido.</p>
         {% endif %}

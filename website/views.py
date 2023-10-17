@@ -17,6 +17,9 @@ def logado():
 @views.route('/adicionar_materia', methods=['POST'])
 def adicionar_materia():
     nome = request.form['nome']
+    if nome == '':
+        flash('A matéria precisa ter um nome.', category='error')
+        return redirect(url_for('views.logado'))
     materia = Materia(nome=nome, id_usuario=current_user.id)
     db.session.add(materia)
     db.session.commit()
@@ -46,7 +49,9 @@ def topico(id_topico):
 def adicionar_topico(id_materia):
     nome = request.form['nome']
     prazo_str = request.form['prazo']
-
+    if nome == '':
+        flash('O tópico precisa ter um nome.', category='error')
+        return redirect(url_for('views.materia', id_materia=id_materia))
     topico = Topico(nome=nome, id_materia=id_materia, prazo=prazo_str)
     db.session.add(topico)
     db.session.commit()
@@ -71,6 +76,9 @@ def marcar_completo(id_topico, finalizado):
 @views.route('/adicionar_anotacao/<int:id_topico>', methods=['POST'])
 def adicionar_anotacao(id_topico):
     texto = request.form['texto']
+    if texto == '':
+        flash('A anotação não pode estar vazia.', category='error')
+        return redirect(url_for('views.topico', id_topico=id_topico))
     anotacao = Anotacao(texto=texto, id_topico=id_topico)
     db.session.add(anotacao)
     db.session.commit()

@@ -1,12 +1,107 @@
 <!DOCTYPE html>
 <html>
+<style type="text/css">
+body{
+    background-color: #252933;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0%;
+    }
+
+header{
+    background-color: #181920;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #CBD0F7;
+    }
+
+    .arealogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    background-color: #181920;
+    width: 335px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    align-self: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login input{
+    margin-top: 10px;
+    background-color: #252A34;
+    color: #CBD0F7;
+    border: none;
+    height: 45px;
+    outline: none;
+    border-radius: 8px;
+    padding-left: 12px;
+    font-size: 18px
+}
+
+h2{
+    color: #CBD0F7
+}
+
+input::placeholder{
+    color: #CBD0F7;
+    font-size: 18px;
+}
+
+form [type=submit]{
+    display: block;
+    background-color: #5568FE;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 6px
+}
+form [type=submit]:hover {
+background-color: #3f4dbb;
+}
+p{
+    color: #CBD0F7
+}
+
+a{
+    color: #5568FE;
+    margin-left: 10px;
+}
+ul {
+    max-width: 100%;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    word-wrap: break-word;
+        }  
+</style>
 <head>
     <title>Página Logada</title>
 </head>
 <body>
-    <h1>Bem-vindo, {{ current_user.nome }}!</h1>
+    <header>
+        <h1>Gerenciador de Tarefas</h1>
+    </header>
+    <section class="arealogin">
+        <div class="login">
+    <h2>Bem-vindo, {{ current_user.nome }}!</h2>
     
-    <h2>Suas Matérias:</h2>
+    <h3>Suas Matérias:</h3>
     <ul>
         {% for materia in materias %}
             <li class="materias-button">
@@ -15,16 +110,19 @@
                     <button type="submit" class="btn btn-info">{{ materia.nome }}</button>
                 </form>
                 <form method="POST" action="{{ url_for('views.excluir_materia', id_materia=materia.id) }}">
-                    <button type="submit" class="btn btn-danger">Excluir</button>
+                    <button type="submit" class="btnexcluir">Excluir</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
 
-    <h2>Adicionar Matéria:</h2>
+    <h3>Adicionar Matéria:</h3>
     <form method="POST" action="{{ url_for('views.adicionar_materia') }}">
         <input type="text" name="nome" placeholder="Nome da matéria">
         <input type="submit" value="Adicionar">
     </form>
+        </div>
+        <div class="fill">
+    </section>
 </body>
 </html>

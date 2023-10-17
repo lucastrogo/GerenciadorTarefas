@@ -2,17 +2,119 @@
 <html>
 <head>
     <title>Detalhes da Matéria</title>
-    <style>
-        .topic-button {
-            display: flex;
-            justify-content: space-between;
+    <style type="text/css">
+        
+    body{
+        background-color: #252933;
+        font-family: Arial, Helvetica, sans-serif;
+        margin:0%;
+    }
+
+header{
+    background-color: #181920;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #CBD0F7;
+    }
+
+    .arealogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    background-color: #181920;
+    width: 335px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    align-self: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login input{
+    margin-top: 10px;
+    background-color: #252A34;
+    color: #CBD0F7;
+    border: none;
+    height: 45px;
+    outline: none;
+    border-radius: 8px;
+    padding-left: 12px;
+    font-size: 18px
+}
+
+h2{
+    color: #CBD0F7
+}
+
+input::placeholder{
+    color: #CBD0F7;
+    font-size: 18px;
+}
+
+form [type=submit]{
+    display: block;
+    background-color: #5568FE;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 6px
+}
+form [type=submit]:hover {
+background-color: #3f4dbb;
+}
+p{
+    color: #CBD0F7
+}
+
+a{
+    color: #5568FE;
+    margin-left: 10px;
+}
+ul {
+    max-width: 100%;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    word-wrap: break-word;
         }
+        .button {
+    display: inline-block;
+    padding: 3px 5px; /* Ajuste o tamanho do botão conforme necessário */
+    background-color: #5568FE; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    text-decoration: none; /* Remova sublinhado do link */
+    border: none; /* Remova a borda */
+    border-radius: 6px; /* Borda arredondada */
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
     </style>
 </head>
 <body>
-    <h1>{{ materia.nome }}</h1>
-    
-    <h2>Tópicos:</h2>
+    <header>
+        <h1>Gerenciador de Tarefas</h1>
+    <a href="/logado" class="button">Voltar</a>
+    </header>
+    <section class="arealogin">
+    <div class="login">
+    <h2>{{ materia.nome }}</h2>
+    <h3>Tópicos:</h3>
     <ul>
         {% for topico in materia.topicos %}
             <li class="topic-button">
@@ -27,7 +129,7 @@
         {% endfor %}
     </ul>
 
-    <h2>Adicionar Tópico:</h2>
+    <h3>Adicionar Tópico:</h3>
     <form method="POST" action="{{ url_for('views.adicionar_topico', id_materia=materia.id) }}">
         <label for="nome">Coloque o nome do tópico:</label>
         <input type="text" name="nome">
@@ -35,5 +137,7 @@
         <input type="text" id="prazo" name="prazo" pattern="\d{4}-\d{2}-\d{2}" title="Digite a data no formato YYYY-MM-DD">
         <input type="submit" value="Adicionar">
     </form>
+    </div>
+    </section>
 </body>
 </html>

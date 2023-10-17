@@ -2,21 +2,145 @@
 <html>
 <head>
     <title>Detalhes do Tópico</title>
-    <style>
-        .topic-button {
-            display: flex;
-            justify-content: space-between;
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Detalhes do Tópico</title>
+        <style>
+
+            body{
+        background-color: #252933;
+        font-family: Arial, Helvetica, sans-serif;
+        margin:0%;
+        
+        
+    }
+    
+    header{
+        background-color: #181920;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #CBD0F7;
         }
-    </style>
+    
+        .arealogin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .login {
+        background-color: #181920;
+        width: 335px;
+        padding: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        align-self: flex-start;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .login form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .login input{
+        margin-top: 10px;
+        background-color: #252A34;
+        color: #CBD0F7;
+        border: none;
+        height: 45px;
+        outline: none;
+        border-radius: 8px;
+        padding-left: 12px;
+        font-size: 18px
+    }
+    
+    h2{
+        color: #CBD0F7
+    }
+    
+    input::placeholder{
+        color: #CBD0F7;
+        font-size: 18px;
+    }
+    
+    form [type=submit]{
+        
+        background-color: #5568FE;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        padding: 10px;
+        border-radius: 6px
+    }
+    form [type=submit]:hover {
+    background-color: #3f4dbb;
+    }
+    .parent-element {
+      text-align: center;
+    }
+    
+    .parent-element ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .parent-element ul li {
+      margin: 0;
+      padding: 0;
+    }
+    p{
+        color: #CBD0F7
+    }
+    
+    a{
+        color: #5568FE;
+        
+    }
+            ul {
+        max-width: 100%;
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        word-wrap: break-word;
+            }
+    .button {
+    display: inline-block;
+    padding: 3px 5px; /* Ajuste o tamanho do botão conforme necessário */
+    background-color: #5568FE; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    text-decoration: none; /* Remova sublinhado do link */
+    border: none; /* Remova a borda */
+    border-radius: 6px; /* Borda arredondada */
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
+    
+        </style>
 </head>
 <body>
-    <h1>{{ topico.nome }}</h1>
+    <header>
+        <h1>Gerenciador de Tarefas</h1> 
+        <a href="/logado" class="button">Voltar para Matérias</a>     
+    </header>
+    <section class="arealogin">
+    <div class="login">
+    <h2>{{ topico.nome }}</h2>
     {% if topico.prazo %}
         <p>Faltam {{ diferenca }} dias para o prazo do tópico.</p>
     {% else %}
         <p>O prazo não foi definido.</p>
     {% endif %}
-    <h2>Anotações:</h2>
+    <h3>Anotações:</h3>
     <ul>
         {% for anotacao in topico.anotacoes %}
             <li class="anotacoes">
@@ -30,11 +154,10 @@
         {% endfor %}
     </ul>
 
-    <h2>Adicionar Anotação:</h2>
+    <h3>Adicionar Anotação:</h3>
     <form method="POST" action="{{ url_for('views.adicionar_anotacao', id_topico=topico.id) }}">
         <textarea name="texto" placeholder="Escreva sua anotação aqui"></textarea>
         <input type="submit" value="Adicionar">
     </form>
-    <a href="/logado">Voltar</a>
 </body>
 </html>

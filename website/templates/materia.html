@@ -48,7 +48,7 @@
     <form method="POST" action="{{ url_for('views.adicionar_topico', id_materia=materia.id) }}">
         <a>Adicionar tópico:</a>
         <input type="text" name="nome" class="inputtopico" placeholder="Nome do tópico">
-        <input type="text" id="prazo" name="prazo" pattern="\d{4}-\d{2}-\d{2}" title="Digite a data no formato YYYY-MM-DD" class="inputprazo" placeholder="Prazo para o tópico">
+        <input type="date" id="prazo" name="prazo" class="inputprazo" placeholder="Prazo para o tópico">
         <input type="submit" value="Adicionar" class="btnadicionar">
     </form>
     </div>

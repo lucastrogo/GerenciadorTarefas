@@ -21,6 +21,7 @@
         padding: 10px;
         font-family: Arial, Helvetica, sans-serif;
         color: #CBD0F7;
+        box-shadow: 0 0 3em #2c2c2c;
         }
     
         .arealogin {
@@ -40,46 +41,29 @@
         align-self: flex-start;
         margin-top: 30px;
         margin-bottom: 30px;
+        box-shadow: 0 0 3em #2c2c2c;
     }
     
     .login form{
         display: flex;
         flex-direction: column;
         width: 100%;
+        align-items: center;
     }
     
-    .login input{
-        margin-top: 10px;
-        background-color: #252A34;
-        color: #CBD0F7;
-        border: none;
-        height: 45px;
-        outline: none;
-        border-radius: 8px;
-        padding-left: 12px;
-        font-size: 18px
-    }
+    
     
     h2{
-        color: #CBD0F7
+        color: #CBD0F7;
+        font-size: 28px;
     }
     
     input::placeholder{
-        color: #CBD0F7;
+        color: #66697c;
         font-size: 18px;
     }
     
-    form [type=submit]{
-        
-        background-color: #5568FE;
-        font-size: 20px;
-        text-transform: uppercase;
-        font-weight: bold;
-        cursor: pointer;
-        border: none;
-        padding: 10px;
-        border-radius: 6px
-    }
+    
     form [type=submit]:hover {
     background-color: #3f4dbb;
     }
@@ -102,8 +86,9 @@
     }
     
     a{
-        color: #5568FE;
-        
+        color: #CBD0F7;
+        font-size: 22px;
+        margin-left: 10px;
     }
             ul {
         max-width: 100%;
@@ -112,25 +97,67 @@
         padding: 0;
         word-wrap: break-word;
             }
-    .button {
+    .voltar {
     display: inline-block;
-    padding: 3px 5px; /* Ajuste o tamanho do botão conforme necessário */
-    background-color: #5568FE; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
-    text-decoration: none; /* Remova sublinhado do link */
-    border: none; /* Remova a borda */
-    border-radius: 6px; /* Borda arredondada */
+    padding: 3px 5px;
+    background-color: #5568FE;
+    color: #fff;
+    text-decoration: none; 
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
     text-align: center;
 }
-    
+.btnexcluir{
+    margin-top: 2px;
+    margin-bottom: 16px;
+    display: block;
+    background-color: #fa3c3c;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    border-radius: 100px;
+}
+.btnadicionar {
+    display: block;
+    background-color: #7283ff;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 130px;
+    margin-top: 6px;
+    height: 37px;
+    outline: none;
+}
+.anotacao {
+    color: #CBD0F7;
+    font-size: 17px;
+}
+.textarea1 {
+    margin-top: 5px;
+    background-color: #252A34;
+    color: #CBD0F7;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 18px
+}
         </style>
 </head>
 <body>
     <header>
         <h1>Gerenciador de Tarefas</h1> 
-        <a href="/logado" class="button">Voltar para Matérias</a>     
+        <a href="/logado" class="voltar">Voltar para Matérias</a>     
     </header>
     <section class="arealogin">
     <div class="login">
@@ -140,24 +167,28 @@
     {% else %}
         <p>O prazo não foi definido.</p>
     {% endif %}
-    <h3>Anotações:</h3>
+    <br>
+    <br>
+    <a>Anotações:</a>
+    <br>
+    <br>
     <ul>
         {% for anotacao in topico.anotacoes %}
             <li class="anotacoes">
                 <form method="GET" action="{{ url_for('views.topico', id_topico=topico.id) }}">
-                    <li><a>{{ anotacao.texto }}</a></li>
+                    <li><a class="anotacao">{{ anotacao.texto }}</a></li>
                 </form>
                 <form method="POST" action="{{ url_for('views.excluir_anotacao', id_anotacao=anotacao.id) }}">
-                    <button type="submit" class="btn btn-danger">Excluir</button>
+                    <button type="submit" class="btnexcluir">X</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
-
-    <h3>Adicionar Anotação:</h3>
+    <br>
+    <a>Adicionar Anotação:</a>
     <form method="POST" action="{{ url_for('views.adicionar_anotacao', id_topico=topico.id) }}">
-        <textarea name="texto" placeholder="Escreva sua anotação aqui"></textarea>
-        <input type="submit" value="Adicionar">
+        <textarea name="texto" placeholder="Escreva sua anotação aqui" class="textarea1" rows="6" cols="30"></textarea>
+        <input type="submit" value="Adicionar" class="btnadicionar">
     </form>
 </body>
 </html>

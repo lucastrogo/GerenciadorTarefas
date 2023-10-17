@@ -12,6 +12,7 @@ header{
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
     color: #CBD0F7;
+    box-shadow: 0 0 3em #2c2c2c;
     }
 
     .arealogin {
@@ -31,46 +32,79 @@ header{
     align-self: flex-start;
     margin-top: 30px;
     margin-bottom: 30px;
+    box-shadow: 0 0 3em #2c2c2c;
 }
 
 .login form{
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
 }
 
-.login input{
+.inputmateria {
     margin-top: 10px;
     background-color: #252A34;
     color: #CBD0F7;
     border: none;
     height: 45px;
     outline: none;
-    border-radius: 8px;
+    border-radius: 130px;
     padding-left: 12px;
     font-size: 18px
 }
-
-h2{
-    color: #CBD0F7
-}
-
-input::placeholder{
-    color: #CBD0F7;
-    font-size: 18px;
-}
-
-form [type=submit]{
+.btnadicionar {
     display: block;
-    background-color: #5568FE;
-    font-size: 20px;
+    background-color: #7283ff;
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
     border: none;
-    padding: 10px;
-    border-radius: 6px
+    border-radius: 130px;
+    margin-top: 10px;
+    height: 37px;
+    outline: none;
 }
+.btnmateria{
+    display: flex;
+    justify-content: space-between;
+    background-color: #7283ff;
+    font-size: 20px;
+    
+    
+    cursor: pointer;
+    border: none;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 130px
+}
+.btnexcluir{
+    margin-top: 2px;
+    margin-bottom: 16px;
+    display: block;
+    background-color: #fa3c3c;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    border-radius: 100px;
+}
+h2{
+    color: #CBD0F7;
+    font-size: 28px;
+}
+
+input::placeholder{
+    color: #66697c;
+    font-size: 18px;
+}
+
 form [type=submit]:hover {
 background-color: #3f4dbb;
 }
@@ -79,7 +113,8 @@ p{
 }
 
 a{
-    color: #5568FE;
+    color: #CBD0F7;
+    font-size: 22px;
     margin-left: 10px;
 }
 ul {
@@ -88,7 +123,8 @@ ul {
     text-align: center;
     padding: 0;
     word-wrap: break-word;
-        }  
+        }
+
 </style>
 <head>
     <title>Página Logada</title>
@@ -100,26 +136,28 @@ ul {
     <section class="arealogin">
         <div class="login">
     <h2>Bem-vindo, {{ current_user.nome }}!</h2>
-    
-    <h3>Suas Matérias:</h3>
+    <br>
+    <br>
+    <br>
+    <a>Suas Matérias:</a>
     <ul>
         {% for materia in materias %}
             <li class="materias-button">
                 <form method="GET" action="{{ url_for('views.materia', id_materia=materia.id) }}">
                     <input type="hidden" name="materia_id" value="{{ materia.id }}">
-                    <button type="submit" class="btn btn-info">{{ materia.nome }}</button>
+                    <button class="btnmateria" type="submit" class="btn btn-info">{{ materia.nome }}</button>
                 </form>
                 <form method="POST" action="{{ url_for('views.excluir_materia', id_materia=materia.id) }}">
-                    <button type="submit" class="btnexcluir">Excluir</button>
+                    <button type="submit" class="btnexcluir">X</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
-
-    <h3>Adicionar Matéria:</h3>
+    <br>
+    <a>Adicionar Matéria:</a>
     <form method="POST" action="{{ url_for('views.adicionar_materia') }}">
-        <input type="text" name="nome" placeholder="Nome da matéria">
-        <input type="submit" value="Adicionar">
+        <input type="text" name="nome" placeholder="Nome da matéria" class="inputmateria">
+        <input type="submit" value="Adicionar" class="btnadicionar">
     </form>
         </div>
         <div class="fill">

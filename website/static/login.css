@@ -44,7 +44,7 @@ header{
     border: none;
     height: 45px;
     outline: none;
-    border-radius: 8px;
+    border-radius: 130px;
     padding-left: 12px;
     font-size: 18px
 }
@@ -67,7 +67,7 @@ form [type=submit]{
     cursor: pointer;
     border: none;
     padding: 10px;
-    border-radius: 6px
+    border-radius: 130px
 }
 form [type=submit]:hover {
 background-color: #3f4dbb;

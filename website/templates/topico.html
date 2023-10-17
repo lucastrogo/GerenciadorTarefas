@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Gerenciador de Tarefas</h1> 
-        <a href="/logado" class="voltar">Voltar para Matérias</a>
+        <a href="/materia/{{topico.id_materia}}" class="voltar">Voltar</a>
         <a href="/logout" class="logout">Deslogar</a>  
     </header>
     {% with messages = get_flashed_messages(with_categories=true) %} 

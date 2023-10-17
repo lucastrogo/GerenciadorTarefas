@@ -57,10 +57,6 @@ input::placeholder{
     font-size: 18px;
 }
 
-
-form [type=submit]:hover {
-background-color: #3f4dbb;
-}
 p{
     color: #CBD0F7
 }
@@ -151,13 +147,52 @@ ul {
     padding-right: 20px;
     border-radius: 130px
 }
+.alert {
+    background-color: #047fd1;
+    box-shadow: 0 0 3em #2c2c2c;
+    padding: 10px 30px;
+    position: absolute;
+}
+.logout {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: #5568FE;
+    color: #fff;
+    text-decoration: none; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
+.logout:hover{
+    background-color: #3f4dbb;
+}
+.voltar:hover{
+    background-color: #3f4dbb;
+}
     </style>
 </head>
 <body>
     <header>
         <h1>Gerenciador de Tarefas</h1>
     <a href="/logado" class="voltar">Voltar</a>
+    <a href="/logout" class="logout">Deslogar</a>
     </header>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %} 
+    {% for category, message in messages %} 
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
     <section class="arealogin">
     <div class="login">
     <h2>{{ materia.nome }}</h2>

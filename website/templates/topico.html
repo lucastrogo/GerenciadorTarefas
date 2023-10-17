@@ -63,10 +63,10 @@
         font-size: 18px;
     }
     
-    
-    form [type=submit]:hover {
-    background-color: #3f4dbb;
-    }
+    .btnadicionar:hover{
+        background-color: #3f4dbb;
+    } 
+
     .parent-element {
       text-align: center;
     }
@@ -124,6 +124,9 @@
     padding-top: 1px;
     border-radius: 100px;
 }
+.btnexcluir:hover {
+    background-color: #b82b2b;
+}
 .btnadicionar {
     display: block;
     background-color: #7283ff;
@@ -137,6 +140,13 @@
     height: 37px;
     outline: none;
 }
+.voltar:hover{
+    background-color: #3f4dbb;
+}
+.logout:hover{
+    background-color: #3f4dbb;
+}
+
 .anotacao {
     color: #CBD0F7;
     font-size: 17px;
@@ -152,13 +162,46 @@
     padding-right: 12px;
     font-size: 18px
 }
+.alert {
+    background-color: #047fd1;
+    box-shadow: 0 0 3em #2c2c2c;
+    padding: 10px 30px;
+    position: absolute;
+}
+.logout {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: #5568FE;
+    color: #fff;
+    text-decoration: none; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
         </style>
 </head>
 <body>
     <header>
         <h1>Gerenciador de Tarefas</h1> 
-        <a href="/logado" class="voltar">Voltar para Matérias</a>     
+        <a href="/logado" class="voltar">Voltar para Matérias</a>
+        <a href="/logout" class="logout">Deslogar</a>  
     </header>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %} 
+    {% for category, message in messages %} 
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
     <section class="arealogin">
     <div class="login">
     <h2>{{ topico.nome }}</h2>

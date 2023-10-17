@@ -33,6 +33,7 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
+    flash('Deslogado com sucesso.', category='success')
     '''Função para logout do usuário'''
     
     logout_user()

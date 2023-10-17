@@ -1,5 +1,5 @@
 '''Arquivo para as outras funções'''
-
+from datetime import datetime
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import Usuario, Materia, Topico, Anotacao
 from . import db
@@ -33,18 +33,26 @@ def materia(id_materia):
 @views.route('/topico/<int:id_topico>')
 def topico(id_topico):
     topico = Topico.query.get(id_topico)
-    return render_template('topico.html', topico=topico)
+    # Calcula a diferença de dias entre o prazo e a data de criação
+    diferenca = None  # Inicialmente definimos a diferença como None
+    if topico.prazo:
+        hoje = datetime.utcnow().date()
+        prazo = datetime.strptime(topico.prazo, '%Y-%m-%d').date()
+        diferenca = (prazo - hoje).days
+    return render_template('topico.html', topico=topico, diferenca=diferenca)
 
 @login_required
 @views.route('/adicionar_topico/<int:id_materia>', methods=['POST'])
 def adicionar_topico(id_materia):
     nome = request.form['nome']
-    topico = Topico(nome=nome, id_materia=id_materia)
+    prazo_str = request.form['prazo']
+
+    topico = Topico(nome=nome, id_materia=id_materia, prazo=prazo_str)
     db.session.add(topico)
     db.session.commit()
-    flash('Tópico adicionado com sucesso!', 'success')
-    return redirect(url_for('views.materia', id_materia=id_materia))
 
+    flash('Tópico e prazo adicionados com sucesso!', 'success')
+    return redirect(url_for('views.materia', id_materia=id_materia))
 @login_required
 @views.route('/marcar_completo/<int:id_topico>', methods=['POST'])
 def marcar_completo(id_topico):

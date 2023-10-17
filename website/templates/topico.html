@@ -11,7 +11,11 @@
 </head>
 <body>
     <h1>{{ topico.nome }}</h1>
-    
+    {% if topico.prazo %}
+        <p>Faltam {{ diferenca }} dias para o prazo do tópico.</p>
+    {% else %}
+        <p>O prazo não foi definido.</p>
+    {% endif %}
     <h2>Anotações:</h2>
     <ul>
         {% for anotacao in topico.anotacoes %}
@@ -31,5 +35,6 @@
         <textarea name="texto" placeholder="Escreva sua anotação aqui"></textarea>
         <input type="submit" value="Adicionar">
     </form>
+    <a href="/logado">Voltar</a>
 </body>
 </html>

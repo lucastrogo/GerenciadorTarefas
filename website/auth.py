@@ -64,7 +64,7 @@ def cadastro():
             new_user = Usuario(usuario=usuario, 
                                nome=nome, 
                                senha=generate_password_hash(
-                               senha1, method='scrypt'))
+                               senha1, method='pbkdf2:sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
